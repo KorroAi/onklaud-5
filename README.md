@@ -11,6 +11,11 @@
 
 ---
 
+<p align="center">
+  <a href="demo.mp4"><img src="pipeline-diagram.png" alt="Onklaud 5 Demo" width="800"></a>
+  <br><em>Click for demo video</em>
+</p>
+
 Onklaud 5 orchestrates multiple AI models through a structured council process.
 Two independent models (Kimi K2.7 + GLM 5.2) review every piece of code from
 different architectural perspectives. A rule-based ladder resolves 57% of tasks

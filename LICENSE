@@ -1,0 +1,50 @@
+Business Source License 1.1
+
+License text copyright (c) 2017 MariaDB Corporation Ab, All Rights Reserved.
+Parameters applied to the Onklaud 5 Pipeline Software.
+
+Licensor:             Onklaud 5 Contributors
+Licensed Work:        Onklaud 5 v3.2 — Multi-Model Verification Pipeline
+                      The Licensed Work is (c) 2026 Onklaud 5 Contributors.
+Additional Use Grant: You may use the Licensed Work for any purpose, including
+                      production use, provided that:
+                      (a) your annual revenue is less than USD $2,000,000,
+                      (b) you have fewer than 25 employees, OR
+                      (c) you obtain a commercial license from the Licensor.
+                      Non-production use, academic research, personal projects,
+                      open-source contributions, and evaluation are unlimited.
+
+Change Date:          2030-06-22 (four years from publication)
+
+Change License:       MIT License
+
+For purpose of this license:
+
+"Production Use" means use of the Licensed Work within a product or service
+made available to third parties (excluding internal development, testing,
+and evaluation environments).
+
+"Annual Revenue" means gross revenue in the most recent fiscal year.
+
+Terms
+
+The Licensor hereby grants you the right to use, copy, modify, create
+derivative works, and distribute the Licensed Work, subject to the
+following conditions:
+
+- You may use the Licensed Work for any non-production purpose without
+  limitation.
+
+- You may use the Licensed Work for production purposes only if you meet
+  the Additional Use Grant criteria above OR have obtained a separate
+  commercial license from the Licensor.
+
+- You must retain this license notice in all copies of the Licensed Work.
+
+- On the Change Date, the Licensed Work automatically becomes available
+  under the Change License (MIT).
+
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM OR DAMAGES.
+
+For commercial licensing inquiries, contact the Licensor.

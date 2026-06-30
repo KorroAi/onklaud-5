@@ -1,0 +1,138 @@
+# Onklaud 5 - Council Orchestration v3.2 (🎠 PONYTAIL NATIVE + 🔮 GLM +50%)
+# GLM now at 3 pipeline stages: pre-design → dual review → arbitration (+50% presence)
+# Ponytail is step 0 - filters 85% before any API call
+# Token cost is NOT a constraint. Quality, speed, and rigor PRIME.
+
+models:
+  - name: kimi-k2.7-code
+    provider: openrouter
+    model_id: moonshotai/kimi-k2.7-code
+    tier: primary
+    cost_per_1k_input: 0.00095
+    cost_per_1k_output: 0.004
+    max_tokens: 64000
+    role: PRIMARY code generator + reviewer (only after Ponytail ladder finds nothing)
+    strengths:
+      - coding
+      - tool_use
+      - precise_edits
+
+  - name: glm-5.2
+    provider: openrouter
+    model_id: z-ai/glm-5.2
+    tier: primary
+    cost_per_1k_input: 0.0014
+    cost_per_1k_output: 0.0044
+    max_tokens: 64000
+    role: PRIMARY architecture reviewer + arbitrator (every response)
+    strengths:
+      - agentic
+      - architecture
+      - debugging
+      - knowledge
+
+  - name: deepseek-v4-pro
+    provider: deepseek
+    tier: emergency_fallback_only
+    cost_per_1k_input: 0.0
+    cost_per_1k_output: 0.0
+    max_tokens: 1000
+    role: EMERGENCY FALLBACK ONLY
+
+# Pipeline - 🎠→🔮→⚡→⚡+🔮→🔮→gate→🔨
+pipeline:
+  steps:
+    - name: ponytail_ladder
+      role: "stdlib → native → existing dep → shortest. If found → one-liner."
+      cost: 0
+
+    - name: glm_pre_design
+      model: glm-5.2
+      max_tokens: 16000
+      role: "GLM touchpoint 1: architecture sketch before Kimi codes"
+
+    - name: kimi_generate
+      model: kimi-k2.7-code
+      max_tokens: 64000
+      role: "Code generation. Only if ladder empty."
+
+    - name: dual_review
+      models: [kimi-k2.7-code, glm-5.2]
+      max_tokens: 64000
+      role: "GLM touchpoint 2: Kimi + GLM both review, scores averaged"
+
+    - name: glm_arbitrate
+      model: glm-5.2
+      max_tokens: 64000
+      role: "GLM touchpoint 3: final synthesis"
+
+    - name: quality_gate
+      threshold: 10
+
+    - name: verify
+      command: "python onklaud-5/verify.py --type-only"
+
+# Council Pipeline
+council:
+  enabled: true
+  mandatory: true
+  stages:
+    ladder:
+      role: "🎠 Ponytail: stdlib → native → dep → shortest. 0 tokens."
+      cost: 0
+
+    classify:
+      role: "Keyword heuristic → code | architecture | complex"
+      cost: 0
+
+    draft:
+      model: kimi-k2.7-code
+      max_tokens: 16000
+      role: "First draft by Kimi (only if ladder empty)"
+
+    review:
+      coding_model: kimi-k2.7-code
+      architecture_model: glm-5.2
+      max_tokens: 64000
+      role: "Cross-model peer review - Kimi + GLM on EVERY response"
+
+    revise:
+      model: kimi-k2.7-code
+      max_tokens: 64000
+      max_rounds: 3
+
+    arbitrate:
+      model: glm-5.2
+      max_tokens: 64000
+      condition: "ALWAYS"
+
+    quality_gate:
+      threshold: 10
+      weights:
+        blocker: 3x
+        critical: 2x
+        warning: 1x
+
+    immune_memory:
+      record_threshold: 8
+      storage: "onklaud-5/immune_memory.json"
+
+routing:
+  strategy: ladder_first  # 🎠 Ponytail before everything
+  primary: kimi-k2.7-code
+  verify_primary: glm-5.2
+  arbitrator: glm-5.2
+
+verification:
+  max_tokens: 8000
+  skip_for: []
+
+rules:
+  - "🎠 Ponytail Ladder FIRST - toujours, systématiquement, avant tout code"
+  - "Si le ladder trouve → one-liner, pas de code"
+  - "Kimi & GLM sur tout ce que le ladder ne couvre pas"
+  - "Pipeline trace: [🎠→⚡K(X/10)→🔮G→gate(X/10)]"
+  - "Gate 10/10 non-négociable"
+  - "DeepSeek = emergency fallback uniquement"
+  - "Token cost is NOT a constraint"
+  - "Anti-bypass: no trace → REJECT"

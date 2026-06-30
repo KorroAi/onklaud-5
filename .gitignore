@@ -1,0 +1,27 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# Secrets
+.env
+
+# Generated data (from your runs)
+scores.jsonl
+immune_memory.json
+research_benchmarks.json
+benchmark_results.json
+
+# Generated reports
+BENCHMARK_REPORT.txt
+ALE_REPORT.txt
+RESEARCH_PAPER.txt
+*.pdf
+*.html
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

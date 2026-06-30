@@ -5,6 +5,10 @@
   Not a model. A pipeline. And pipelines beat models.
 </p>
 
+<p align="center">
+  <img src="pipeline-diagram.png" alt="Onklaud 5 Pipeline" width="800">
+</p>
+
 ---
 
 Onklaud 5 orchestrates multiple AI models through a structured council process.

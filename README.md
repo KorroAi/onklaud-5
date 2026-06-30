@@ -6,8 +6,11 @@
 </p>
 
 <p align="center">
-  <img src="demo.gif" alt="Onklaud 5 Demo" width="800"><br>
-  <a href="demo.mp4">Download full video (MP4, 25s)</a>
+  <img src="pipeline-diagram.png" alt="Onklaud 5 Pipeline Architecture" width="800">
+</p>
+
+<p align="center">
+  <img src="demo.gif" alt="Onklaud 5 Terminal Demo" width="800">
 </p>
 
 <p align="center">

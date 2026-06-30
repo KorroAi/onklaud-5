@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <img src="pipeline-diagram.png" alt="Onklaud 5 Pipeline Architecture" width="800"><br>
-  <a href="demo.mp4">▶ Watch demo (25s terminal recording)</a>
+  <img src="demo.gif" alt="Onklaud 5 Demo" width="800"><br>
+  <a href="demo.mp4">Download full video (MP4, 25s)</a>
 </p>
 
 <p align="center">
@@ -43,11 +43,24 @@ model can offer.**
 
 Onklaud 5 applies **ensemble learning** to code generation. Instead of trusting
 one model with one architectural perspective, it runs a 6-stage pipeline where
-two independent models from different organizations (Moonshot AI + Z.AI/Tsinghua)
-review every decision from complementary angles.
+three AI models (Kimi K2.7 + GLM 5.2 + DeepSeek V4 Pro) from
+different providers review every decision through a structured council,
+supported by four cost-saving infrastructure layers.
 
 When they agree, confidence is high. When they disagree, a third arbitration
 pass resolves the conflict. Nothing ships below a 10/10 quality threshold.
+
+### The 4 Cost-Saving Infrastructure Layers
+
+These don't use AI models. They run offline, cost $0, and are what makes
+Onklaud 5 radically cheaper than single-model approaches:
+
+| Layer | Component | What it does | Cost |
+|-------|-----------|-------------|------|
+| 1 | **Ponytail Ladder** | stdlib/native/dep pattern matching. 57% of tasks resolved BEFORE any API call | $0 |
+| 2 | **Immune Memory** | Pre-scans tasks against 19 stored failure patterns. Prevents repeated mistakes | $0 |
+| 3 | **Headroom** | 60-95% context compression. Prevents saturation in 50+ message sessions | $0 |
+| 4 | **Quality Gate** | 10/10 scoring across 7 dimensions. Blocks broken code before it ships | $0 |
 
 ### The Full Pipeline
 
@@ -337,7 +350,7 @@ python fast_gate.py file.py --syntax-only
 |-------|----------|------|-----------|-------------|---------|
 | Kimi K2.7 Code | Moonshot AI | Code gen + review | $0.95 | $4.00 | 262K |
 | GLM 5.2 | Z.AI / Tsinghua | Architecture + arbitration | $1.40 | $4.40 | 1M |
-| DeepSeek V4 Pro | DeepSeek | Local fallback | Prepaid | Prepaid | 128K |
+| DeepSeek V4 Pro | DeepSeek (Direct API) | Lightweight tasks | ~$0.14 | ~$0.28 | 128K |
 
 ---
 

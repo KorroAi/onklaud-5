@@ -11,12 +11,10 @@ immune_memory.json
 research_benchmarks.json
 benchmark_results.json
 
-# Generated reports
+# Generated reports (temporary/reproducible)
 BENCHMARK_REPORT.txt
 ALE_REPORT.txt
 RESEARCH_PAPER.txt
-*.pdf
-*.html
 
 # IDE
 .vscode/
